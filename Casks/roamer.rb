@@ -8,4 +8,5 @@ cask "roamer" do
   homepage "https://github.com/edadma/roamer"
 
   app "Roamer.app"
+  binary "Roamer.app/Contents/Resources/bin/roamer"
 end
