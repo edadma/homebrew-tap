@@ -1,6 +1,6 @@
 cask "roamer" do
-  version "0.0.7"
-  sha256 "7ea8ed4626e55a4213e3482868dd135922a799ded21b81c0afb76ab88dfcea8e"
+  version "0.0.8"
+  sha256 "d27f98a4ff76ac4f70bbc2d356c52dd5f04c51747be7feab2f63cd379c676636"
 
   url "https://github.com/edadma/roamer/releases/download/v#{version}/Roamer-#{version}-arm64.dmg"
   name "Roamer"
