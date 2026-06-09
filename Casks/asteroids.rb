@@ -1,8 +1,8 @@
 cask "asteroids" do
-  version "0.0.1"
-  sha256 "1f332762c488c838316bb5a11f970470340107886dd281c5957838e31555e409"
+  version "0.0.2"
+  sha256 "1891699a669ab9aa3a1604470c20e59f1df778fee3ddeb6f306de8376d3ed928"
 
-  url "https://github.com/edadma/asteroids/releases/download/v#{version}/asteroids-#{version}-arm64.tar.gz"
+  url "https://github.com/edadma/asteroids/releases/download/v#{version}/Asteroids-#{version}-arm64.zip"
   name "Asteroids"
   desc "Retro vector Asteroids game (Scala Native + suit)"
   homepage "https://github.com/edadma/asteroids"
@@ -12,5 +12,6 @@ cask "asteroids" do
   depends_on formula: "cairo"
   depends_on formula: "freetype"
 
-  binary "asteroids"
+  app "Asteroids.app"
+  binary "Asteroids.app/Contents/MacOS/asteroids"
 end
