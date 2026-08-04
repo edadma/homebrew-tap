@@ -1,7 +1,7 @@
 class Sysl < Formula
   desc "Ref-counted systems language that compiles through LLVM"
   homepage "https://sysl.sh/"
-  version "0.0.2"
+  version "0.0.3"
   license "ISC"
 
   # Apple silicon only -- this is what the author's machine can build. A Linux
@@ -10,7 +10,7 @@ class Sysl < Formula
   on_macos do
     on_arm do
       url "https://github.com/edadma/sysl/releases/download/v#{version}/sysl-#{version}-darwin-arm64.tar.gz"
-      sha256 "f3bcbf4ff81351945beb20b71285efd6bb593b7e7da14c2bb6e18a976dc57a37"
+      sha256 "70e4aaf35c3ce3cd475a2c98183ea802e80c553362239f75f8b590c62a9bd718"
     end
   end
 
@@ -22,11 +22,26 @@ class Sysl < Formula
   depends_on "llvm"
 
   def install
-    bin.install "sysl"
+    # The tarball is already a prefix -- bin/sysl and share/sysl/lib -- so the
+    # whole tree moves into the keg and brew links bin/sysl itself.
+    #
+    # As of 0.0.3 the standard library ships as source rather than being
+    # generated into the binary, and the compiler finds it by resolving its own
+    # path and looking for <prefix>/share/sysl/lib. That is exactly pkgshare,
+    # which is why installing the tree as it stands is the whole of it: no
+    # wrapper script, no environment variable, and an old keg left behind keeps
+    # using the library it shipped with.
+    prefix.install Dir["*"]
   end
 
   test do
     assert_match "sysl #{version}", shell_output("#{bin}/sysl --version")
+
+    # The one way this formula can now be wrong and still install. Before 0.0.3
+    # the library was inside the executable and could not go missing; now a
+    # tarball built without it, or an install step that dropped it, produces a
+    # compiler that starts, answers --version, and cannot compile anything.
+    assert_predicate pkgshare/"lib/sysl", :directory?
 
     (testpath/"hello.sysl").write <<~SYSL
       print("Hello, sysl!")
@@ -34,10 +49,11 @@ class Sysl < Formula
     SYSL
 
     # Deliberately more than a smoke test of the binary starting. This drives the
-    # whole toolchain: it builds the standard-module artifact into the cache on
-    # first use, emits IR, and hands it to clang to assemble and link -- so it
-    # fails if the llvm dependency is not actually reachable at runtime, which is
-    # the one thing about this formula that could be wrong and still install.
+    # whole toolchain: it finds the library installed above, builds the
+    # standard-module artifact into the cache from it, emits IR, and hands that
+    # to clang to assemble and link -- so it fails if the llvm dependency is not
+    # actually reachable at runtime, which is the other way this formula could be
+    # wrong and still install.
     #
     # assert_equal rather than assert_match, so this pins the *whole* of stdout
     # rather than passing on the text appearing somewhere in it. And 42 is
