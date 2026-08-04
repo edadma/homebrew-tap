@@ -8,6 +8,24 @@ Custom Homebrew tap for apps by [edadma](https://github.com/edadma).
 brew tap edadma/tap
 ```
 
+## Available Formulae
+
+### sysl
+
+A ref-counted systems language that compiles through LLVM to a native executable — no garbage
+collector, no borrow checker.
+
+```
+brew install edadma/tap/sysl
+```
+
+Pulls in `llvm` as a runtime dependency: sysl emits textual LLVM IR and hands it to `clang` to
+assemble and link, and uses `llvm-ar` to build a library into a `.syslib`. Apple's command-line tools
+ship a `clang` but no `llvm-ar`, which is why the formula does not rely on them.
+
+**Apple silicon only for now.** Other platforms build from source — see
+[sysl.sh/getting-started/installation](https://sysl.sh/getting-started/installation/).
+
 ## Available Casks
 
 ### Roamer
