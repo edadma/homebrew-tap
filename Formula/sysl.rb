@@ -38,6 +38,12 @@ class Sysl < Formula
     # first use, emits IR, and hands it to clang to assemble and link -- so it
     # fails if the llvm dependency is not actually reachable at runtime, which is
     # the one thing about this formula that could be wrong and still install.
-    assert_match "Hello, sysl!\n42", shell_output("#{bin}/sysl run #{testpath}/hello.sysl")
+    #
+    # assert_equal rather than assert_match, so this pins the *whole* of stdout
+    # rather than passing on the text appearing somewhere in it. And 42 is
+    # computed by the compiled program rather than echoed, so a back end that
+    # got arithmetic wrong fails here instead of printing a greeting and passing.
+    # The artifact-build notice goes to stderr and so is not part of this.
+    assert_equal "Hello, sysl!\n42\n", shell_output("#{bin}/sysl run #{testpath}/hello.sysl")
   end
 end
