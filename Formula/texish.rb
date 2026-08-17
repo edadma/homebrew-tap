@@ -1,5 +1,9 @@
-# Generated from packaging/homebrew/texish.rb in the texish repository, with the version and the
-# four checksums filled in from the assets of the release being packaged.
+# Homebrew formula for the texish command-line tool.
+#
+# This is a template: `tools/brew-formula.sh <version>` fills in the version and the four SHA256
+# fields from the assets the "Release binaries" workflow attaches, and the release workflow runs it
+# and pushes the result to Formula/texish.rb in the edadma/homebrew-tap repository. See README.md in
+# this directory.
 #
 # The formula installs a prebuilt binary rather than building from source, because building means
 # a JDK, sbt, Scala Native's LLVM toolchain and a full compile — a lot to ask of a package that
@@ -9,7 +13,7 @@
 class Texish < Formula
   desc "TeX-style typesetting engine that renders documents to PDF"
   homepage "https://texish.edadma.dev"
-  version "0.26.0"
+  version "0.27.0"
   license "ISC"
 
   depends_on "cairo"
@@ -19,27 +23,31 @@ class Texish < Formula
   on_macos do
     on_arm do
       url "https://github.com/edadma/texish/releases/download/v#{version}/texish-#{version}-macos-arm64"
-      sha256 "04b57170ec3ae8d5d237ff09be1e3a38d3d831d1a14e3280f1253491cb4015ad"
+      sha256 "b536f76b28690110e17679a4dc4061e4abe116e51bb35da934c6a8acfe6b3f25"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/edadma/texish/releases/download/v#{version}/texish-#{version}-linux-x86_64"
-      sha256 "36b130fd1954c93706535d03f109dedd8597abb02279e559a6a712164c461f0c"
+      sha256 "5e819d21f7758aee09b98fb1efda22198d3b5ab9fc185d8c8fe3294f299de2b0"
     end
     on_arm do
       url "https://github.com/edadma/texish/releases/download/v#{version}/texish-#{version}-linux-arm64"
-      sha256 "39c9d24325fa21a02b85a6239d8e6ac25c45d5ae112e57054c1e6d3ddefe6b19"
+      sha256 "6b73e35057abe7704d7640793df9d9b276197506961daefeec020b8c20c8e2e5"
     end
   end
 
   # The font catalogue and the packages, identical on every platform. Without it texish still
   # renders an ordinary document from its compiled-in core; with it, the complex scripts, the CJK
   # cuts and every package beyond base and document work too.
+  #
+  # The version is written out rather than interpolated: inside a resource block `version` is the
+  # *resource's* own version (Resource#version), not the formula's, and it is nil while the block is
+  # being evaluated — so `#{version}` here would silently produce `.../download/v/texish--share.tar.gz`.
   resource "share" do
-    url "https://github.com/edadma/texish/releases/download/v0.26.0/texish-0.26.0-share.tar.gz"
-    sha256 "5bb070840d3fefafdb64671f70de8fd2264f2c3b65c3d3164ca155804f1880f3"
+    url "https://github.com/edadma/texish/releases/download/v0.27.0/texish-0.27.0-share.tar.gz"
+    sha256 "f1c0e04474dd9eb14007447a6ac54654c25b73bccc80dd605aeb0fe29885af34"
   end
 
   def install
