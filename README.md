@@ -16,6 +16,20 @@ brew trust edadma/tap
 
 ## Available Formulae
 
+### juicer
+
+A small, cross-platform static site generator for Scala 3 — markdown and squiggly templates, themes,
+and an asset pipeline over `sass` and `esbuild`.
+
+```
+brew install edadma/tap/juicer
+```
+
+Both tools come with it: juicer shells out to `sass` and `esbuild` rather than vendoring either, so a
+site gets the current version of each.
+
+macOS on Apple silicon, and Linux on x86_64 and arm64.
+
 ### texish
 
 A TeX-style typesetting engine that renders documents to PDF — Knuth–Plass line breaking, an
