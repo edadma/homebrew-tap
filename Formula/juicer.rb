@@ -11,7 +11,7 @@
 class Juicer < Formula
   desc "Small, cross-platform static site generator for Scala 3"
   homepage "https://github.com/edadma/juicer"
-  version "0.4.3"
+  version "0.4.4"
   license "ISC"
 
   # libuv is linked into the binary and is the only thing it needs.
@@ -28,18 +28,18 @@ class Juicer < Formula
   on_macos do
     on_arm do
       url "https://github.com/edadma/juicer/releases/download/v#{version}/juicer-#{version}-macos-arm64"
-      sha256 "358498e05bd02e584fed5645f1588fbf312249b04575b06e78ffc55842d19555"
+      sha256 "e578684bbaed2a399424af463aa214aba0ee9c0f813029db04ab8492c3a3bbdf"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/edadma/juicer/releases/download/v#{version}/juicer-#{version}-linux-x86_64"
-      sha256 "fe89508124f487236618bebb765d3bb1bc3a33a22ac6791768b00fb63eb0705e"
+      sha256 "811bef9270db8117c48729f1b9dfe2c08793391b8d60cf392ddc7e9243d8ff08"
     end
     on_arm do
       url "https://github.com/edadma/juicer/releases/download/v#{version}/juicer-#{version}-linux-arm64"
-      sha256 "982b2aee476b609980510f8ece0f4f2b80a46bb98ccf6795fc6936533817f389"
+      sha256 "3e58363dd4036f29b5207f5a2831f80f391ec1e4e991ca57c3faca840556fff2"
     end
   end
 
