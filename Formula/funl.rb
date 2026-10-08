@@ -2,18 +2,19 @@
 #
 # The formula installs the prebuilt macOS binaries rather than building from source, because
 # building needs the sysl compiler. The tarball holds both executables, `funl` and `prolog`; each
-# links only against libSystem, so there are no dependencies.
+# links only against libraries macOS ships (libSystem, libcurl, libsqlite3), so there are no
+# dependencies.
 
 class Funl < Formula
   desc "FunL language, regex engine and ISO Prolog on one backtracking machine"
   homepage "https://github.com/edadma/funl"
-  version "0.0.2"
+  version "0.0.3"
   license "ISC"
 
   on_macos do
     on_arm do
       url "https://github.com/edadma/funl/releases/download/v#{version}/funl-#{version}-macos-arm64.tar.gz"
-      sha256 "fd6d2b5abffc4a5437ead1e4357caf1a3a0effd60f50cf7ec66b4dbe9414a622"
+      sha256 "80c7175c257feed23a2c5ea7e15add37c7a4c68adbc02abb391ddaf9ff7654c6"
     end
   end
 
