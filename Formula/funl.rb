@@ -8,7 +8,7 @@
 class Funl < Formula
   desc "FunL language, regex engine and ISO Prolog on one backtracking machine"
   homepage "https://github.com/edadma/funl"
-  version "0.0.6"
+  version "0.0.7"
   license "ISC"
 
   depends_on "libuv"
@@ -16,7 +16,7 @@ class Funl < Formula
   on_macos do
     on_arm do
       url "https://github.com/edadma/funl/releases/download/v#{version}/funl-#{version}-macos-arm64.tar.gz"
-      sha256 "6ac7c979e9da74dbfd096fcf19a376740d85696c6f85ceb2f4203c518d284eda"
+      sha256 "e793cf523b69677abcb48fc33c267f8f34263b0a53eab946528618a011014a40"
     end
   end
 
