@@ -13,7 +13,7 @@
 class Texish < Formula
   desc "TeX-style typesetting engine that renders documents to PDF"
   homepage "https://texish.edadma.dev"
-  version "0.31.4"
+  version "0.32.0"
   license "ISC"
 
   depends_on "cairo"
@@ -23,18 +23,18 @@ class Texish < Formula
   on_macos do
     on_arm do
       url "https://github.com/edadma/texish/releases/download/v#{version}/texish-#{version}-macos-arm64"
-      sha256 "85153a8733d4d8e3ce33e914180bca1221c8edda8a1f1f0a71544bcebebd1bb7"
+      sha256 "4c6b12087bc0cfbecc70e7e13cc985c89053e45e03fd9e09542309c2939d4006"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/edadma/texish/releases/download/v#{version}/texish-#{version}-linux-x86_64"
-      sha256 "daee73f0a3bad3b706c444d1caed4890693029b1f3ae4b0cfe7543b891b258f2"
+      sha256 "48f4508b20a30110aa9adf2c6fc74a8d3d2d2f8f783c6c7773ab3253d86465f0"
     end
     on_arm do
       url "https://github.com/edadma/texish/releases/download/v#{version}/texish-#{version}-linux-arm64"
-      sha256 "5ae4600dd2b44f91a50e25d7c59c0445dc76f021bda860a01510584dd9a4d347"
+      sha256 "e27610ebaced9003e99e9a927f6815cb12c9d780c682a5a634bb4653ec0b1d28"
     end
   end
 
@@ -46,8 +46,8 @@ class Texish < Formula
   # *resource's* own version (Resource#version), not the formula's, and it is nil while the block is
   # being evaluated — so `#{version}` here would silently produce `.../download/v/texish--share.tar.gz`.
   resource "share" do
-    url "https://github.com/edadma/texish/releases/download/v0.31.4/texish-0.31.4-share.tar.gz"
-    sha256 "b31ee050f17796426fff7efa0f33a84e53235add7b09d29b49c71dbc588c3058"
+    url "https://github.com/edadma/texish/releases/download/v0.32.0/texish-0.32.0-share.tar.gz"
+    sha256 "3a20ac836f3df16416f26da0bc08eb7d77d22809e976a7de76ec0dbc090d42cd"
   end
 
   def install
